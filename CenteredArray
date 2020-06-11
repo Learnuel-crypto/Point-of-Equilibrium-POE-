@@ -1,0 +1,59 @@
+class CenteredArray
+    {
+        /*
+        Consider an array A with n of positive integers.An integer idx is called a POE(point of equilibrium)
+        of A, if A[0] + A[1] + … + A[idx – 1] is equal to A[idx + 1] + A[idx + 2] + … + A[n – 1]. Write a function to return 
+        POE of an array, if it exists and -1 otherwise.
+        */
+        static void Mains(string[] args)
+        {
+            int[] numbers;int valLength;int n=0 ;
+
+            Console.WriteLine("Enter Length of Array: ");
+            valLength = Int16.Parse(Console.ReadLine());
+            numbers = new int[valLength];
+            do
+            {
+                Console.Write("Enter Array element: ");
+                numbers[n] =int.Parse( Console.ReadLine());
+                n++;
+            } while (n<valLength);
+
+            Console.WriteLine("{0} {1}","POE =", isCentered(numbers).ToString());
+            Console.Write("Press any key to continue...");
+            Console.ReadKey();
+        }
+        public static int isCentered(int[] value)
+        { 
+            var n = 0; int centerValue;
+            int centreindex;
+            
+            //check if the array is odd
+            if (value.Length % 2 == 0)
+            {
+                return -1;
+            }
+            else
+            {
+                centreindex = (value.Length - 1) / 2;
+                centerValue = value[centreindex ];
+            }
+            while (n < value.Length)
+            {
+                //check if all element are greater 
+                if (value[n] < centerValue)
+                {
+                    return -1;
+                }
+                else
+                {
+                    if (value[n] == centerValue && n != centreindex )
+                    {
+                        return -1;
+                    } 
+                }
+                n++;
+            }
+            return centerValue;
+        }
+    }
